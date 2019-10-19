@@ -1,5 +1,5 @@
 # Sublime Typescript Transpiler
-A sublime package to transpile typescript with <ctrl-s> action.
+A sublime package to transpile typescript with *ctrl-s* action.
 
 ## Structure to work
 This package is intended to use with ts and js folder above root folder.
