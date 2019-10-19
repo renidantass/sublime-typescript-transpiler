@@ -2,7 +2,7 @@
 A sublime package to transpile typescript with *ctrl-s* action.
 
 ## Structure to work
-This package is intended to use with ts and js folder above root folder.
+This package is intended to use with ts and js folder below root folder.
 ```
 .
 ├── index.html
