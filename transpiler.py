@@ -20,8 +20,7 @@ class Transpiler:
 			return -1
 
 	def __run(self):
-		print(os.path.dirname(self.__filename))
-		process = subprocess.Popen("tsc --p ../ts/", 
+		process = subprocess.Popen("tsc --p ../ts", 
 									stdout=subprocess.PIPE,
 									shell=True)
 		out, err = process.communicate()
@@ -32,9 +31,10 @@ class Transpiler:
 		return error[:error.find(':')]
 
 	def run(self):
+		os.chdir(os.path.dirname(self.__filename))
 		self.__validate_file = self.__is_valid()
+		execution = self.__run()
 		if self.__validate_file == True: 
-			execution = self.__run()
 			if ('error' not in execution[0]) and (execution[1] == 0):
 				self.status = "✓ Transpilation sucessfully at {}".format(self.hour)
 			else:
