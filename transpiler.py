@@ -20,7 +20,8 @@ class Transpiler:
 			return -1
 
 	def __run(self):
-		process = subprocess.Popen("tsc --p ../ts", 
+		cmd = "tsc {} --outDir {} --target es5 --module commonjs".format(self.__filename, self.outDir)
+		process = subprocess.Popen(cmd, 
 									stdout=subprocess.PIPE,
 									shell=True)
 		out, err = process.communicate()
@@ -31,7 +32,8 @@ class Transpiler:
 		return error[:error.find(':')]
 
 	def run(self):
-		os.chdir(os.path.dirname(self.__filename))
+		self.outDir = os.path.dirname(self.__filename)+'/'
+		self.outDir = self.outDir.replace('/ts/', '/js/', 1)
 		self.__validate_file = self.__is_valid()
 		execution = self.__run()
 		if self.__validate_file == True: 
